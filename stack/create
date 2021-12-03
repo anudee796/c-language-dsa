@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *top;//userdeined datatype var
+int main(){
+    int choice;
+    while(1){
+        printf("1.push\n");
+        printf("2.pop\n");
+        printf("3.display\n");
+        printf("enter the choice\n");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:push();
+            break;
+            case 2:pop();
+            break;
+            case 3: display();
+            break;
+            case 4: exit(0);
+            break;
+            default:printf("enter the valid");
+        }
+    }
+}
+void push(){
+ struct node *newnode=(struct node *)malloc(sizeof(struct node));
+ printf("enter the data to insert\n");
+ scanf("%d",&newnode->data);
+ struct node *temp;
+ if(top==NULL){
+     temp=newnode;
+     top=newnode;
+ }else{
+     newnode->next=temp;
+     temp=newnode;
+     top=newnode;
+ }
+}
+void pop(){
+    struct node *temp;//userdefined datatype var
+    if(top==NULL){
+        printf("stack is empty\n");
+    }else{
+        temp=top;
+        printf("popped ele is %d",temp->data);
+        top=top->next;
+        free(top);
+        
+    }
+}
+void display(){
+    struct node *temp;
+    if(top==NULL){
+        printf("stack is empty\n");
+    }else{
+        temp=top;
+        while(temp!=NULL){
+            printf("%d ",temp->data);
+            temp=temp->next;
+        }
+    }
+}
